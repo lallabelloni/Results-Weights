@@ -1,4 +1,5 @@
-Using device: cuda:0 \  
+# output
+Using device: cuda:0
 Training set: 40000 immagini \  
 Validation set: 10000 immagini  \  
 Test set: 10000 immagini  \  
