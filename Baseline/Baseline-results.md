@@ -1,5 +1,5 @@
-Using device: cuda:0  \  
-Training set: 40000 immagini  \  
+Using device: cuda:0 \  
+Training set: 40000 immagini \  
 Validation set: 10000 immagini  \  
 Test set: 10000 immagini  \  
 Input : 32 , 3 @ 32 x 32  \  
