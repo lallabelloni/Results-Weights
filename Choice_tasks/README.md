@@ -257,4 +257,4 @@ In the t-SNE map, we observe that:\
 \
 7. Frog (Index 6) stands out as a class with the least common traits compared to the other animals. This likely results in it being well-separated from the other classes.
 
-![alt text](./data/images/CIFAR10_model_t-sne_example)
+![alt text](./data/images/CIFAR10_example.png)
