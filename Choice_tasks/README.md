@@ -1,3 +1,16 @@
+# Choice tasks
+
+#Instructions
+
+In the file ./data/Settings.json, which is our conf file, there are all the hyperparameters for every task of the project which is described in the file.
+
+If the user wants to replicate the conditions of the sidetasks should put the specified values in the relevant key of the file.
+
+This file is used for the tasks of the project as a conf file. The script that uses it is the Engine.py.
+
+The weights after the trainig of the model on CIFAR-100 are stored in the file ./data/weightfile.pth
+
+
 ## Model2-Side-Task1-Learninig-Rate-Change
 \
 By reducing the learning rate, we observe better validation and test accuracy. \
