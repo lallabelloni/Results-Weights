@@ -256,5 +256,5 @@ In the t-SNE map, we observe that:\
 6. Deer (Index 4) and Horse (Index 7) appear more distinct from Cat and Dog, potentially because they are larger animals with different head-nose structures, although some overlap still exists.\
 \
 7. Frog (Index 6) stands out as a class with the least common traits compared to the other animals. This likely results in it being well-separated from the other classes.\
-\
-![alt text](./data/images/CIFAR10_model_t-sne-example.png)
+
+![alt text](./data/images/CIFAR10_model_t-sne_example)
