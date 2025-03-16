@@ -1,9 +1,9 @@
-Using device: cuda:0
-Training set: 40000 immagini
-Validation set: 10000 immagini
-Test set: 10000 immagini
-Input : 32 , 3 @ 32 x 32
------- Convolution 1 ------
+Using device: cuda:0\
+Training set: 40000 immagini\
+Validation set: 10000 immagini\
+Test set: 10000 immagini\
+Input : 32 , 3 @ 32 x 32\
+------ Convolution 1 ------\
 convolution 1 kernel : 5
 P :  0
 S :  1
