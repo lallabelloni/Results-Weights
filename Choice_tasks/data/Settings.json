@@ -1,0 +1,187 @@
+/*
+
+  Task 3: CNN["Name"]="CIFAR10_model" 
+          CNN["out"]["nodes"]=10
+          Data["source"]="CIFAR10"
+          Data["kfolds"][true]= 0
+          Data["split"][true]= 1
+          Data["transform"]["play"]=0
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.5, 0.5, 0.5 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.5, 0.5, 0.5 ]
+          Optimizer["lr"]=0.001
+          Training["lrchange"][true]= 0
+          Training["pretraining"]["Stored"]=0 
+          Training["pretraining"]["Store"]=0
+
+  Task 4: CNN["Name"]="CIFAR100_model" 
+          CNN["out"]["nodes"]=20
+          Data["source"]="CIFAR100"
+          Data["kfolds"][true]= 0
+          Data["split"][true]= 1
+          Data["transform"]["play"]=0
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.5, 0.5, 0.5 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.5, 0.5, 0.5 ]
+          Optimizer["lr"]=0.001
+          Training["lrchange"][true]= 0
+          Training["pretraining"]["Stored"]=0 
+          Training["pretraining"]["Store"]=1
+
+  Task 5: CNN["Name"]="CIFAR10_model_pretrained"
+          CNN["out"]["nodes"]=10
+          Data["source"]="CIFAR10"
+          Data["kfolds"][true]= 0
+          Data["split"][true]= 1
+          Data["transform"]["play"]=0
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.5, 0.5, 0.5 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.5, 0.5, 0.5 ]
+          Optimizer["lr"]=0.0005
+          Training["lrchange"][true]= 0
+          Training["pretraining"]["Stored"]=1
+          Training["pretraining"]["Store"]=0
+
+  STask1: CNN["Name"]="CIFAR10_model_changing_learning_rate" 
+          CNN["out"]["nodes"]=10
+          Data["source"]="CIFAR10"
+          Data["kfolds"][true]= 0
+          Data["split"][true]= 1
+          Data["transform"]["play"]=0
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.5, 0.5, 0.5 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.5, 0.5, 0.5 ]
+          Optimizer["lr"]=0.001
+          Training["lrchange"][true]= 1
+          Training["pretraining"]["Stored"]=0
+          Training["pretraining"]["Store"]=0
+
+  Stask2: CNN["Name"]="CIFAR10_model_stratified_5_folds"
+          CNN["out"]["nodes"]=10
+          Data["source"]="CIFAR10"
+          Data["kfolds"][true]= 1
+          Data["split"][true]= 0
+          Data["transform"]["play"]=0
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.5, 0.5, 0.5 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.5, 0.5, 0.5 ]
+          Optimizer["lr"]=0.001
+          Training["lrchange"][true]= 0
+          Training["pretraining"]["Stored"]=0
+          Training["pretraining"]["Store"]=0
+
+  Stask5: CNN["Name"]="CIFAR10_model_transformers"
+          CNN["out"]["nodes"]=10
+          Data["source"]="CIFAR10"
+          Data["kfolds"][true]= 0
+          Data["split"][true]= 1
+          Data["transform"]["play"]=1
+          Data["transform"]["tevalparams"]["Normalize"]["mean"]=[ 0.4914, 0.4822, 0.4465 ]
+          Data["transform"]["tevalparams"]["Normalize"]["std"]=[ 0.2470, 0.2435, 0.2616 ]
+          Optimizer["lr"]=0.001
+          Training["lrchange"][true]= 0
+          Training["pretraining"]["Stored"]=0
+          Training["pretraining"]["Store"]=0
+
+*/
+
+{
+  "CNN": {
+    "Name": "CIFAR10_model_transformers",
+    "actfunc": "ReLU",
+    "poolfunc": "MaxPool2d",
+    "dropout": {
+      "true": 1,
+      "Value": 0.48
+    },
+    "conv1": {
+      "in_channels": 3,
+      "out_channels": 32,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": 0
+    },
+    "pool1": {
+      "kernel_size": 2,
+      "stride": 2
+    },
+    "conv2": {
+      "out_channels": 64,
+      "kernel_size": 5,
+      "stride": 1,
+      "padding": 0
+    },
+    "pool2": {
+      "kernel_size": 2,
+      "stride": 2
+    },
+    "fc1": { "nodes": 2048 },
+    "fc2": { "nodes": 1024 },
+    "out": {
+      "nodes": 10,
+      "func": "softmax",
+      "prec": "max"
+    }
+  },
+  "Optimizer": {
+    "name": "Adam",
+    "lr": 0.001
+  },
+  "Data": {
+    "source": "CIFAR10",
+    "bitsize": 32,
+    "root": "./data",
+    "download": "True",
+    "batch": 32,
+    "split": {
+      "true": 1,
+      "ratio": 0.8
+    },
+    "kfolds": {
+      "true": 0,
+      "func": "StratifiedKFold",
+      "n_splits": 5
+    },
+    "transform": {
+      "play": 1,
+      "trainparams": {
+        "play": {
+          "RandomHorizontalFlip": 0.5,
+          /*"RandomCrop": {
+            "size": 32,
+            "padding": 4
+          },*/
+          "ToTensor": {},
+          "Normalize": {
+            "mean": [ 0.4914, 0.4822, 0.4465 ],
+            "std": [ 0.2470, 0.2435, 0.2616 ]
+          }
+        },
+        "walk": {
+          "ToTensor": {},
+          "Normalize": {
+            "mean": [ 0.5, 0.5, 0.5 ],
+            "std": [ 0.5, 0.5, 0.5 ]
+          }
+        }
+      },
+      "tevalparams": {
+        "ToTensor": {},
+        "Normalize": {
+          "mean": [ 0.4914, 0.4822, 0.4465 ],
+          "std": [ 0.2470, 0.2435, 0.2616 ]
+        }
+      }
+    }
+  },
+  "Training": {
+    "Epochs": 10,
+    "Criterion": "CrossEntropyLoss",
+    "Plots": 5,
+    "Pretraining": {
+      "Store": 0,
+      "Stored": 0,
+      "Location": "./data/weightfile.pth"
+    },
+    "lrchange": {
+      "true": 0,
+      "limit": 5,
+      "rate": 0.5
+    }
+  }
+}
