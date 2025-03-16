@@ -79,3 +79,5 @@ Testing started!\
 Test Loss: 0.7952 - Test Accuracy: 73.19%\
 \
 Testing completed!
+
+![alt text](Figure_5.png)
