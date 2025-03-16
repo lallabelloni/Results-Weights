@@ -1,6 +1,6 @@
 # Choice tasks
 
-#Instructions
+## Instructions
 
 In the file ./data/Settings.json, which is our conf file, there are all the hyperparameters for every task of the project which is described in the file.
 
